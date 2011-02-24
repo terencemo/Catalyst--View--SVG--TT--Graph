@@ -112,6 +112,8 @@ sub process {
 
 Can be svg, png or jpeg or any other format supported by L<Image::LibRSVG>
 
+For other options, see L<SVG::TT::Graph>
+
 =head1 SEE ALSO
 
 L<SVG::TT::Graph>, L<Image::LibRSVG>
