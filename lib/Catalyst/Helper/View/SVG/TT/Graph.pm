@@ -17,7 +17,6 @@ our $VERSION = 0.010;
 sub mk_compclass {
     my ( $self, $helper ) = @_;
     my $file = $helper->{file};
-    `touch /tmp/testhelper`;
     $helper->render_file( 'compclass', $file );
 }
 
