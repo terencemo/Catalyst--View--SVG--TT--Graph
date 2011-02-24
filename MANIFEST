@@ -3,3 +3,4 @@ Makefile.PL
 README
 lib/Catalyst/View/SVG/TT/Graph.pm
 t/Catalyst-View-SVG-TT-Graph.t
+lib/Catalyst/Helper/View/SVG/TT/Graph.pm
