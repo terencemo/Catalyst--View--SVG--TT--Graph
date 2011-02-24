@@ -1,4 +1,4 @@
-package Catayst::Helper::View::SVG::TT::Graph;
+package Catalyst::Helper::View::SVG::TT::Graph;
 
 use strict;
 
