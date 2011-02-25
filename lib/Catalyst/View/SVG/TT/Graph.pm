@@ -5,13 +5,19 @@ BEGIN { extends 'Catalyst::View'; }
 
 use Carp;
 use Image::LibRSVG;
-#use YAML;
+use MIME::Types;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
+
+has 'format' => ( is => 'ro', isa => 'Str', default => 'svg' );
+
+has 'chart_conf' => ( is => 'ro', isa => 'HashRef', default => sub {{}} );
+
+has 't' => ( is => 'ro', isa => 'MIME::Types', default => sub { MIME::Types->new } );
 
 =head1 NAME
 
-Catalyst::View::SVG::TT::Graph - SVG::TT::Graph charts (in svg/png/jpeg.. format) for your Catalyst application
+Catalyst::View::SVG::TT::Graph - SVG::TT::Graph charts (in svg/png/gif/jpeg..) for your Catalyst application
 
 =head1 SYNOPSIS
 
@@ -19,13 +25,15 @@ Create your view class:
 
     ./script/myapp_create.pl view Chart SVG::TT::Graph
 
-Set your chart preferences in your view:
+Set your chart preferences in your config:
 
-    __PACKAGE__->config( {
-        format      => 'png',
-        style_sheet => '/path/to/stylesheet.css',
-        show_graph_title => 1
-    } );
+    <View::Chart>
+        format         png
+        <chart_conf>
+            style_sheet         /path/to/stylesheet.css
+            show_graph_title    1
+        </chart_conf>
+    </View::Chart>
 
 Stash your chart data in your controller:
 
@@ -66,8 +74,8 @@ sub process {
     $type =~ m/^(Bar(Horizontal)?|Pie|Line)$/ or croak("Invalid chart type $type");
 
     my $conf = {
-        %{ $self->config },
-        %{ $c->stash->{"chart_conf"} }
+        %{ $self->chart_conf },
+        %{ $c->stash->{chart_conf} }
     };
 
     $conf->{fields} = $fields;
@@ -89,30 +97,38 @@ sub process {
         }
     }
 
-    my $format = $conf->{format} || 'svg';
-    if (Image::LibRSVG->isFormatSupported($format)) {
+    my @formats = qw(gif jpeg png bmp ico pnm xbm xpm);
+    my $frestr = '^(' . join('|', @formats) . ')$';
+    my $format = $c->stash->{format} || $self->format;
+
+    if ($format =~ m/$frestr/) {
+        Image::LibRSVG->isFormatSupported($format)
+            or croak("Format $format is not supported");
         $svgttg->compress(0);
         my $img = $svgttg->burn;
         my $rsvg = Image::LibRSVG->new();
         $rsvg->loadImageFromString($img);
-        $c->res->content_type("image/$format");
+        my $mtype = $self->t->mimeTypeOf($format);
+        $c->res->content_type($mtype);
         $c->res->body($rsvg->getImageBitmap($format));
     } elsif ($format eq 'svg') {
         $c->res->content_type("image/svg+xml");
         $c->res->content_encoding("gzip");
         $c->res->body($svgttg->burn);
-    } else {
-        croak("Format $format is not supported");
     }
 }
 
 =head1 OPTIONS
 
+Options can be set in the config or in the stash
+
 =head2 format
 
-Can be svg, png or jpeg or any other format supported by L<Image::LibRSVG>
+Can be svg, png, gif, jpeg or any other format supported by L<Image::LibRSVG>
 
-For other options, see L<SVG::TT::Graph>
+=head2 chart_conf
+
+All options taken by L<SVG::TT::Graph> can be provided
 
 =head1 SEE ALSO
 
