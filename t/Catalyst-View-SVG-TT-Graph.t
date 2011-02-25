@@ -1,2 +1,2 @@
 use Test::More tests => 1;
-BEGIN { use_ok('Catalyst::View::PNGTTGraph') };
+BEGIN { use_ok('Catalyst::View::SVG::TT::Graph') };
