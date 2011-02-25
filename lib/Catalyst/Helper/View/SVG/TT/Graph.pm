@@ -2,17 +2,17 @@ package Catalyst::Helper::View::SVG::TT::Graph;
 
 use strict;
 
+our $VERSION = 0.021;
+
 =head1 NAME
 
-Catayst::Helper::View::SVG::TT::Graph - Helper for Catalyst::View::SVG::TT::Graph
+Catalyst::Helper::View::SVG::TT::Graph - Helper for Catalyst::View::SVG::TT::Graph
 
 =head1 SYNOPSIS
 
     ./script/myapp_create.pl view Chart SVG::TT::Graph
 
 =cut
-
-our $VERSION = 0.010;
 
 sub mk_compclass {
     my ( $self, $helper ) = @_;
@@ -28,6 +28,8 @@ Terence Monteiro <terencemo[at]cpan.org>
 
 This library is free software. You can redistribute it and/or modify it under
 the same terms as Perl itself.
+
+=begin comment
 
 =cut
 
@@ -71,3 +73,9 @@ the same terms as Perl itself.
 =cut
 
 1;
+
+__the_end__
+
+=end comment
+
+=cut
