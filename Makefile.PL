@@ -16,4 +16,5 @@ WriteMakefile(
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Catalyst/View/SVG/TT/Graph.pm', # retrieve abstract from module
        AUTHOR         => 'Terence Monteiro <terencemo@cpan.org>') : ()),
+       LICENSE        => 'perl'
 );
