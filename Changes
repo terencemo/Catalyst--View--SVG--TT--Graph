@@ -1,0 +1,11 @@
+0.021 Sat, Feb 26, 2011
+
+ * Moose dependency
+ * Documented stashed variables
+
+0.02 Fri, Feb 25, 2011
+
+ * Allowing common output formats (gif, jpeg, png, bmp, ico, pnm, xbm, xpm)
+ * Using chart_conf and format Moose attributes
+ * Helper pod typo fix + cleanup
+

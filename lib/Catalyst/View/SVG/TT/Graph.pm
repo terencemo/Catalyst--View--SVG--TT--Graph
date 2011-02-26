@@ -118,9 +118,9 @@ sub process {
     }
 }
 
-=head1 OPTIONS
+=head1 CONFIG OPTIONS
 
-Options can be set in the config or in the stash
+B<Note:> These can be overridden by stashing parameters with the same name
 
 =head2 format
 
@@ -128,7 +128,60 @@ Can be svg, png, gif, jpeg or any other format supported by L<Image::LibRSVG>
 
 =head2 chart_conf
 
-All options taken by L<SVG::TT::Graph> can be provided
+A hashref that takes all options to L<SVG::TT::Graph>::type
+
+=head1 STASHED PARAMETERS
+
+=head2 format
+
+An optional output format (svg/png/gif/jpeg..). Overrides config format
+
+=head2 chart_title
+
+An optional title for your chart
+
+=head2 chart_type
+
+Bar / Pie / Line / BarHorizontal / BarLine / TimeSeries
+
+=head2 chart_conf
+
+Any options taken by L<SVG::TT::Graph>
+
+=head2 chart_fields
+
+A list (array reference) of fields to show in your graph:
+
+    $c->stash->{fields} = [ 'Jan', 'Feb', 'March' .. ];
+
+=head2 chart_data
+
+If all you want is a singe data set, can be a hash reference of the form:
+
+    $c->stash->{chart_data} = { title => 'sales', values => [ 1.4, 2.2, ... ] }
+
+or a simple ArrayRef if you don't want a title
+
+    $c->stash->{chart_data} = [ 1.4, 2.2, ... ]
+
+If you want multiple data sets, use an array reference with each set in a hashref:
+
+    $c->stash->{chart_data} = [
+        { title => 'Barcelona', data => [ .. ] },
+        { title => 'Atletico', data => [ .. ] }
+    ];
+
+=head1 SAMPLE CHARTS
+
+See L<http://leo.cuckoo.org/projects/SVG-TT-Graph/>
+
+=head1 KNOWN BUGS
+
+For jpeg pie charts, background color transparency doesn't work
+
+=head1 REPOSITORY
+
+See L<git://github.com/terencemo/Catalyst--View--SVG--TT--Graph.git>
 
 =head1 SEE ALSO
 
