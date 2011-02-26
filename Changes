@@ -1,7 +1,9 @@
 0.021 Sat, Feb 26, 2011
 
- * Moose dependency
- * Documented stashed variables
+ * Show graph_title if set
+ * Removed error when (optional) param chart_title not stashed
+ * Moose, SVG::TT::Graph module dependencies
+ * Documented stashed variables, sample charts
 
 0.02 Fri, Feb 25, 2011
 

@@ -67,9 +67,9 @@ If you want, say a comparative line graph of mutiple sets of data:
 sub process {
     my ( $self, $c ) = @_;
 
-    my ( $type, $title, $fields, $data ) = map {
+    my ( $type, $fields, $data ) = map {
         $c->stash->{"chart_" . $_} or croak("\$c->stash->{chart_$_} not set")
-    } qw(type title fields data);
+    } qw(type fields data);
 
     $type =~ m/^(Bar(Horizontal)?|Pie|Line)$/ or croak("Invalid chart type $type");
 
@@ -79,7 +79,11 @@ sub process {
     };
 
     $conf->{fields} = $fields;
-    $conf->{graph_title} = $title if $title;
+    
+    if (my $title = $c->stash->{chart_title} || $conf->{graph_title}) {
+        $conf->{graph_title} = $title;
+        $conf->{show_graph_title} = 1;
+    }
 
     my $class = "SVG::TT::Graph::$type";
 
