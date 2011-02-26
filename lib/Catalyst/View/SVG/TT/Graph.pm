@@ -7,7 +7,7 @@ use Carp;
 use Image::LibRSVG;
 use MIME::Types;
 
-our $VERSION = 0.02;
+our $VERSION = 0.021;
 
 has 'format' => ( is => 'ro', isa => 'Str', default => 'svg' );
 
