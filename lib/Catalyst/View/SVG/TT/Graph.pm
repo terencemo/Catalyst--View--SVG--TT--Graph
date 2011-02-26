@@ -132,7 +132,20 @@ Can be svg, png, gif, jpeg or any other format supported by L<Image::LibRSVG>
 
 =head2 chart_conf
 
-A hashref that takes all options to L<SVG::TT::Graph>::type
+A hashref that takes all options to L<SVG::TT::Graph>::type . For the correct
+options, see the corresponding documentation:
+
+L<Bar Options|SVG::TT::Graph::Bar/new()>,
+
+L<Pie Options|SVG::TT::Graph::Pie/new()>,
+
+L<Line Options|SVG::TT::Graph::Line/new()>,
+
+L<BarLine Options|SVG::TT::Graph::BarLine/new()>,
+
+L<TimeSeries Options|SVG::TT::Graph::TimeSeries/new()>,
+
+L<BarHorizontal Options|SVG::TT::Graph::BarHorizontal/new()>
 
 =head1 STASHED PARAMETERS
 
