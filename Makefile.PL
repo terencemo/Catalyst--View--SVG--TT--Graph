@@ -8,10 +8,14 @@ WriteMakefile(
     VERSION_FROM      => 'lib/Catalyst/View/SVG/TT/Graph.pm', # finds $VERSION
     PREREQ_PM         => {
                             'Catalyst::Runtime' => '5.80001',
+                            'FindBin'           => '1.50',
                             'Image::LibRSVG'    => '0.07',
                             'MIME::Types'       => '1.30',
                             'Moose'             => '1.09',
-                            'SVG::TT::Graph'    => '0.14'
+                            'SVG::TT::Graph'    => '0.14',
+                            'Test::More'        => '0.94',
+                            'Test::WWW::Mechanize::Catalyst' => '0.52',
+                            'namespace::autoclean'  => '0.09'
                         }, # e.g., Module::Name => 1.1
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Catalyst/View/SVG/TT/Graph.pm', # retrieve abstract from module

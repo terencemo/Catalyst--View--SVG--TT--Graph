@@ -12,6 +12,12 @@ Catalyst::Helper::View::SVG::TT::Graph - Helper for Catalyst::View::SVG::TT::Gra
 
     ./script/myapp_create.pl view Chart SVG::TT::Graph
 
+=head1 METHODS
+
+=head2 mk_compclass
+
+Generate your Catalyst::View::SVG::TT::Graph view component
+
 =cut
 
 sub mk_compclass {

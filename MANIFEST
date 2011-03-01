@@ -3,5 +3,13 @@ MANIFEST
 Makefile.PL
 README
 lib/Catalyst/View/SVG/TT/Graph.pm
-t/Catalyst-View-SVG-TT-Graph.t
+t/00-load.t
+t/live-test.t
+t/author/pod-coverage.t
+t/author/pod.t
+t/lib/TestApp/Controller/Root.pm
+t/lib/TestApp/View/Chart.pm
+t/lib/script/testapp_server.pl
+t/lib/script/testapp_test.pl
+t/lib/TestApp.pm
 lib/Catalyst/Helper/View/SVG/TT/Graph.pm

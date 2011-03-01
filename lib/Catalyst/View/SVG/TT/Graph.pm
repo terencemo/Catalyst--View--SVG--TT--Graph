@@ -7,7 +7,7 @@ use Carp;
 use Image::LibRSVG;
 use MIME::Types;
 
-our $VERSION = 0.0211;
+our $VERSION = 0.022;
 
 has 'format' => ( is => 'ro', isa => 'Str', default => 'svg' );
 
@@ -61,6 +61,14 @@ If you want, say a comparative line graph of mutiple sets of data:
         { title => 'Barcelona', data => [ ... ] },
         { title => 'Atletico', data => [ ... ] },
     ];
+
+=cut
+
+=head1 METHODS
+
+=head2 process
+
+Generate the SVG::TT::Graph chart
 
 =cut
 
