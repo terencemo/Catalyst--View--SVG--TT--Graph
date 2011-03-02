@@ -2,8 +2,19 @@
 
 use strict;
 use warnings;
-use Test::More;
-use Image::LibRSVG;
+
+my @formats;
+my $tests;
+
+BEGIN {
+    use Image::LibRSVG;
+    @formats = qw(gif jpeg png bmp ico pnm xbm xpm);
+    my @supp_formats = grep { Image::LibRSVG->isFormatSupported($_) } @formats;
+    $tests = 1 + 4 * scalar @supp_formats; # 4 chart types
+}
+
+use Test::More tests => $tests;
+use MIME::Types;
 
 # setup library path
 use FindBin qw($Bin);
@@ -15,12 +26,14 @@ use ok 'TestApp';
 # a live test against TestApp, the test application
 use Test::WWW::Mechanize::Catalyst 'TestApp';
 my $mech = Test::WWW::Mechanize::Catalyst->new;
+my $t = MIME::Types->new();
 
-my @formats = qw(gif jpeg png bmp ico pnm xbm xpm);
 foreach my $format (@formats) {
     next unless Image::LibRSVG->isFormatSupported($format);
     for my $type (qw(bar pie bar_horizontal line)) {
-        $mech->get_ok('http://localhost/chart/' . $type, "get $type chart");
+        my $resp = $mech->get("http://localhost/chart/$type?format=$format");
+        my $ctype = $t->mimeTypeOf($format);
+        is($resp->header('Content-Type'), $ctype, "Got $ctype for $type");
     }
 }
 
