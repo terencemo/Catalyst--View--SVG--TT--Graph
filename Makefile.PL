@@ -8,6 +8,8 @@ WriteMakefile(
     VERSION_FROM      => 'lib/Catalyst/View/SVG/TT/Graph.pm', # finds $VERSION
     PREREQ_PM         => {
                             'Catalyst::Runtime' => '5.80001',
+                            'Catalyst::Plugin::ConfigLoader'    => '0.23',
+                            'Catalyst::Plugin::Static::Simple'  => '0.01',
                             'FindBin'           => '1.42',
                             'Image::LibRSVG'    => '0.07',
                             'MIME::Types'       => '1.30',
