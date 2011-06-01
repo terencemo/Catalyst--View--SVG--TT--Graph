@@ -1,3 +1,7 @@
+0.0224 Wed, Jun 01, 2011
+
+ * Added Catalyst::Action::RenderView dependency
+
 0.0223 Sat, May 28, 2011
 
  * FindBin version reduced to 1.42
