@@ -7,6 +7,7 @@ WriteMakefile(
     NAME              => 'Catalyst::View::SVG::TT::Graph',
     VERSION_FROM      => 'lib/Catalyst/View/SVG/TT/Graph.pm', # finds $VERSION
     PREREQ_PM         => {
+                            'Catalyst::Action::RenderView' => '0.01',
                             'Catalyst::Runtime' => '5.80001',
                             'Catalyst::Plugin::ConfigLoader'    => '0.23',
                             'Catalyst::Plugin::Static::Simple'  => '0.01',
