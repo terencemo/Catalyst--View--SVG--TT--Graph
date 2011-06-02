@@ -1,3 +1,8 @@
+0.0225 Thu, Jun 02, 2011
+
+ * ICO live test was failing due to large image - reduced
+ * Removed use 5.8.8 from Makefile.PL
+
 0.0224 Wed, Jun 01, 2011
 
  * Added Catalyst::Action::RenderView dependency
