@@ -52,7 +52,10 @@ sub chart : Regex(^chart/(bar(_horizontal)?|pie|line)$) {
     my $height = $c->req->params->{height} || 200;
     my $width = $c->req->params->{width} || 300;
 
-    $c->stash->{format} = $c->req->params->{format};
+    my $format = $c->req->params->{format};
+    ( $height, $width ) = ( 40, 60 ) if $format eq 'ico';
+
+    $c->stash->{format} = $format;
 
     my $fields = [ qw(Jan Feb March Apr May) ];
     my $values = [ 51, 40, 57, 33, 38 ];
